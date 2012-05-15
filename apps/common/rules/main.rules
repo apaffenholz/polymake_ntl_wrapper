@@ -1,0 +1,41 @@
+#  Copyright (c) 2010-12 Andreas Paffenholz
+# 
+#  This program is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU General Public License as published by the
+#  Free Software Foundation; either version 2, or (at your option) any
+#  later version: http://www.gnu.org/licenses/gpl.txt.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#-------------------------------------------------------------------------------
+#  $Project: lll $$Id: main.rules 191 2012-02-26 23:10:48Z paffenholz $
+	
+
+CREDIT ntl
+  NTL is a high-performance, portable C++ library providing data structures and algorithms 
+  for arbitrary length integers; 
+  for vectors, matrices, and polynomials over the integers and over finite fields; and 
+  for arbitrary precision floating point arithmetic. 
+  http://shoup.net/ntl/
+
+label ntl
+
+CREDIT ntl
+
+# path to the root installation directory of lll
+custom $ntl_path;
+	
+CONFIGURE_BUILD {
+    find_location($ntl_path, "/usr", "/usr/local", "/opt", "$ENV{HOME}/ntl",
+		  { prompt => "ntl root installation directory",
+		    check => sub { (!-f "$_[0]/include/NTL/ZZ.h" && "$_[0]/include/NTL/ZZ.h does not exist") 
+				       &&  (!-f "$_[0]/lib/libntl.a" && "$_[0]/lib/libntl.a does not exist")
+		    } })
+	or return;
+    
+    return ( NtlLDflags   => "-L$ntl_path/lib",
+	     NtlCflags    => "-I$ntl_path/include",
+	);
+}
