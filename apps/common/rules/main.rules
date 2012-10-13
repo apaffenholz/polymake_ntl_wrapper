@@ -24,18 +24,3 @@ label ntl
 
 CREDIT ntl
 
-# path to the root installation directory of lll
-custom $ntl_path;
-	
-CONFIGURE_BUILD {
-    find_location($ntl_path, "/usr", "/usr/local", "/opt", "$ENV{HOME}/ntl",
-		  { prompt => "ntl root installation directory",
-		    check => sub { (!-f "$_[0]/include/NTL/ZZ.h" && "$_[0]/include/NTL/ZZ.h does not exist") 
-				       &&  (!-f "$_[0]/lib/libntl.a" && "$_[0]/lib/libntl.a does not exist")
-		    } })
-	or return;
-    
-    return ( NtlLDflags   => "-L$ntl_path/lib",
-	     NtlCflags    => "-I$ntl_path/include",
-	);
-}
