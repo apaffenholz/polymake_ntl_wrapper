@@ -23,10 +23,17 @@
 namespace polymake { namespace common {
 
     UserFunctionTemplate4perl("# @category Lattice Polytopes"
-			      "# returns an LLL-reduced basis of the lattice spanned by the rows of L"
+			      "# returns an the integer kernel of the rows of L"
 			      "# @param Matrix L"
 			      "# @return Matrix",
 			      "integer_kernel<E>(Matrix<E>; $ = 0 )");
+
+
+    UserFunctionTemplate4perl("# @category Lattice Polytopes"
+			      "# returns an the integer kernel of the rows of L, assuming that L is a set of homogeneous points"
+			      "# @param Matrix L"
+			      "# @return Matrix",
+			      "affine_integer_kernel<E>(Matrix<E>)");
 
   }}
 

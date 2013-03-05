@@ -39,6 +39,17 @@ namespace polymake { namespace common {
     template <typename E>
       inline
       typename pm::enable_if<Matrix<E>, std::numeric_limits<E>::is_integer>::type
+      affine_integer_kernel ( const Matrix<E> & L ) {
+      NTL_matrix<E> mat(T(L.minor(All,~scalar2set(0))));
+      Matrix<E> IK = mat.integer_kernel();
+      return (ones_vector<E>(IK.rows())|IK);
+    }
+
+
+
+    template <typename E>
+      inline
+      typename pm::enable_if<Matrix<E>, std::numeric_limits<E>::is_integer>::type
       lll_affine ( const Matrix<E> & L ) {
       NTL_matrix<E> mat(L.minor(All,~scalar2set(0)));
       typename NTL_matrix<E>::lll_type lll_result = mat.lll();
