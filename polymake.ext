@@ -1,0 +1,9 @@
+URI http://polymake.org/polytopes/paffenholz/data/polymake/extensions/NTLWrapper#0.1
+
+NAME NTLWrapper
+
+CREDIT ntl_wrapper
+ provides a wrapper for methods from the NTL library of Victor Shoup, http://www.shoup.net/ntl/
+ (c) 2011-2014 Andreas Paffenholz, TU Darmstadt, www.mathematik.tu-darmstadt.de/~paffenholz
+
+
