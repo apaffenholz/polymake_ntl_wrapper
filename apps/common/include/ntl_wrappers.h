@@ -10,8 +10,6 @@
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
--------------------------------------------------------------------------------
-  $Project: lll $$Id: ntl_wrappers.h 209 2012-04-11 13:34:21Z paffenholz $
 */
 
 #include "polymake/client.h"
@@ -23,15 +21,16 @@
 
 namespace polymake { namespace common {
 
+    // 
     template <typename E>
       inline
       typename pm::enable_if<Matrix<E>, std::numeric_limits<E>::is_integer>::type
       integer_kernel ( const Matrix<E> & L, bool homogeneous ) {
       NTL_matrix<E> mat;
       if ( homogeneous )
-	mat = NTL_matrix<E>(ones_vector<E>(L.cols())|T(L));
+	mat = NTL_matrix<E>((ones_vector<E>(L.rows()))|L);
       else
-	mat = NTL_matrix<E>(T(L));
+	mat = NTL_matrix<E>(L);
       return mat.integer_kernel();
     }
 
@@ -40,9 +39,8 @@ namespace polymake { namespace common {
       inline
       typename pm::enable_if<Matrix<E>, std::numeric_limits<E>::is_integer>::type
       affine_integer_kernel ( const Matrix<E> & L ) {
-      NTL_matrix<E> mat(T(L.minor(All,~scalar2set(0))));
-      Matrix<E> IK = mat.integer_kernel();
-      return (ones_vector<E>(IK.rows())|IK);
+      NTL_matrix<E> mat(L.minor(All,~scalar2set(0)));
+      return mat.integer_kernel();
     }
 
 
