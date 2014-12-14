@@ -21,7 +21,17 @@
 
 namespace polymake { namespace common {
 
-    // 
+    //
+    // integer kernel
+    //
+
+    /* computes the integer kernel of a list of row vectors v_1, ..., v_m, i.e.
+       a basis of the space of all integer vectors w such that 
+       w_1v_1+...*w_mv_m = 0
+
+       if homogeneous is true then the space is restricted to all 
+       integer vectors w such that additionally w_1+...+w_m = 0
+     */
     template <typename E>
       inline
       typename pm::enable_if<Matrix<E>, std::numeric_limits<E>::is_integer>::type
@@ -35,6 +45,10 @@ namespace polymake { namespace common {
     }
 
 
+    /* convenience function that computes the integer kernel of the affine 
+       part of a list of rwo vectors (i.e. removes the leading 1 present in
+       the properties LATTICE_POINTS and VERTICES of polymake)
+    */
     template <typename E>
       inline
       typename pm::enable_if<Matrix<E>, std::numeric_limits<E>::is_integer>::type
@@ -44,6 +58,9 @@ namespace polymake { namespace common {
     }
 
 
+    //
+    // short lattice basis using LLL
+    //
 
     template <typename E>
       inline
