@@ -68,7 +68,7 @@ namespace polymake { namespace common {
     template <typename E>
       inline
       typename pm::enable_if<Matrix<E>, std::numeric_limits<E>::is_integer>::type
-      hermite_normal_form ( const Matrix<E> & A ) {
+      HNF ( const Matrix<E> & A ) {
 
       if ( rank(A) != A.cols() )
 	throw std::runtime_error("hermit_normal_form: matrix must have full column rank");
@@ -83,7 +83,7 @@ namespace polymake { namespace common {
     template <typename E>
       inline
       typename pm::enable_if<Matrix<E>, std::numeric_limits<E>::is_integer>::type
-      hermite_normal_form_affine ( const Matrix<E> & A ) {
+      HNF_affine ( const Matrix<E> & A ) {
 
       if ( rank(A.minor(All,~scalar2set(0))) != A.cols()-1 )
 	throw std::runtime_error("hermit_normal_form_affine: matrix must have full column rank");

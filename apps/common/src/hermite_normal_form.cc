@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2010-12 Andreas Paffenholz
+  Copyright (c) 2010-14 Andreas Paffenholz
  
   This program is free software; you can redistribute it and/or modify it
   under the terms of the GNU General Public License as published by the
@@ -10,8 +10,6 @@
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
--------------------------------------------------------------------------------
-  $Project: lll $$Id: integer_kernel.cc 188 2012-02-26 14:57:32Z paffenholz $
 */
 
 #include "polymake/client.h"
@@ -27,14 +25,14 @@ namespace polymake { namespace common {
 			      "# the (n x m) input matrix must have full rank m, so n>=m"
 			      "# @param Matrix A"
 			      "# @return Matrix",
-			      "hermite_normal_form<E>(Matrix<E>)");
+			      "HNF<E>(Matrix<E>)");
 
     UserFunctionTemplate4perl("# @category Lattice Polytopes"
 			      "# returns the non-zero part of the hermite normal form of the affine part of the input"
 			      "# the (n x (m+1)) input matrix must have full rank m, so n>=m"
 			      "# @param Matrix A"
 			      "# @return Matrix",
-			      "hermite_normal_form_affine<E>(Matrix<E>)");
+			      "HNF_affine<E>(Matrix<E>)");
 
 
   }}
