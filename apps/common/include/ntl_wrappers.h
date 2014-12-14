@@ -80,35 +80,48 @@ namespace polymake { namespace common {
       return (lll_result.second.minor(range(L.rows()-lll_result.first,L.rows()-1),All));
     }
 
+    //
+    //  Herminte normal form
+    //
+
     template <typename E>
       inline
       typename pm::enable_if<Matrix<E>, std::numeric_limits<E>::is_integer>::type
-      HNF ( const Matrix<E> & A ) {
+      HNF ( const Matrix<E> & A, bool keep_dimensions ) {
 
       if ( rank(A) != A.cols() )
-	throw std::runtime_error("hermit_normal_form: matrix must have full column rank");
+	throw std::runtime_error("HNF: matrix must have full column rank");
 
       NTL_matrix<E> mat(A);
       Set<int> basis = basis_rows(A);
       Integer determinant = abs(det(A.minor(basis,All)));
-      return  mat.hermite_normal_form(determinant);
+      if ( keep_dimensions ) 
+	return  (zero_matrix<E>(A.rows()-A.cols(),A.cols()))/mat.hermite_normal_form(determinant);
+      else
+	return  mat.hermite_normal_form(determinant);
     }
 
 
     template <typename E>
       inline
       typename pm::enable_if<Matrix<E>, std::numeric_limits<E>::is_integer>::type
-      HNF_affine ( const Matrix<E> & A ) {
+      HNF_affine ( const Matrix<E> & A, bool keep_dimensions ) {
 
       if ( rank(A.minor(All,~scalar2set(0))) != A.cols()-1 )
-	throw std::runtime_error("hermit_normal_form_affine: matrix must have full column rank");
+	throw std::runtime_error("HNF_affine: matrix must have full column rank");
 
 
       NTL_matrix<E> mat(A.minor(All,~scalar2set(0)));
       Set<int> basis = basis_rows(A.minor(All,~scalar2set(0)));
       Integer determinant = abs(det(A.minor(basis,~scalar2set(0))));
-      Matrix<E> result = ((ones_vector<E>(basis.size()))|mat.hermite_normal_form(determinant));
-      return result;
+      if ( keep_dimensions ) {
+	Matrix<E> hnf = (zero_matrix<E>(A.rows()-basis.size(),A.cols()-1))/mat.hermite_normal_form(determinant);	
+	Matrix<E> result = ((ones_vector<E>(hnf.rows()))|hnf);
+	return result;
+      } else {
+	Matrix<E> result = ((ones_vector<E>(basis.size()))|mat.hermite_normal_form(determinant));
+	return result;
+      }
     }
 
 

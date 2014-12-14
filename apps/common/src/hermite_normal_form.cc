@@ -25,14 +25,14 @@ namespace polymake { namespace common {
 			      "# the (n x m) input matrix must have full rank m, so n>=m"
 			      "# @param Matrix A"
 			      "# @return Matrix",
-			      "HNF<E>(Matrix<E>)");
+			      "HNF<E>(Matrix<E>; $ = 0)");
 
     UserFunctionTemplate4perl("# @category Lattice Polytopes"
 			      "# returns the non-zero part of the hermite normal form of the affine part of the input"
 			      "# the (n x (m+1)) input matrix must have full rank m, so n>=m"
 			      "# @param Matrix A"
 			      "# @return Matrix",
-			      "HNF_affine<E>(Matrix<E>)");
+			      "HNF_affine<E>(Matrix<E>; $ = 0 )");
 
 
   }}
