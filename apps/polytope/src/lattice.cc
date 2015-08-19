@@ -23,7 +23,7 @@
 namespace polymake { namespace polytope {
 
 
-    UserFunctionTemplate4perl("# @category Lattice Polytopes"
+    UserFunctionTemplate4perl("# @category Lattice points in polytopes"
 			      "# returns the determinant of the lattice spanned by the rows of L"
 			      "# assumes that the matrix has full column rank."
 			      "# @param L  Matrix<int>"

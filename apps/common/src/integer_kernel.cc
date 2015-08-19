@@ -22,14 +22,14 @@
 
 namespace polymake { namespace common {
 
-    UserFunctionTemplate4perl("# @category Lattice Polytopes"
+    UserFunctionTemplate4perl("# @category Linear Algebra"
 			      "# returns an the integer kernel of the rows of L"
 			      "# @param Matrix L"
 			      "# @return Matrix",
 			      "integer_kernel<E>(Matrix<E>; $ = 0 )");
 
 
-    UserFunctionTemplate4perl("# @category Lattice Polytopes"
+    UserFunctionTemplate4perl("# @category Linear Algebra"
 			      "# returns an the integer kernel of the rows of L, assuming that L is a set of homogeneous points"
 			      "# @param Matrix L"
 			      "# @return Matrix",

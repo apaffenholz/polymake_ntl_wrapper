@@ -23,13 +23,13 @@
 namespace polymake { namespace common {
 
 
-    UserFunctionTemplate4perl("# @category Lattice Polytopes"
+    UserFunctionTemplate4perl("# @category Linear Algebra"
 			      "# returns an LLL-reduced basis of the lattice spanned by the rows of L"
 			      "# @param Matrix<int> L"
 			      "# @return Matrix<int>",
 			      "lll<E>(Matrix<E>)");
 
-    UserFunctionTemplate4perl("# @category Lattice Polytopes" 
+    UserFunctionTemplate4perl("# @category Linear Algebra" 
 			      "# returns an LLL-reduced basis of the lattice spanned by the affine part of the rows of L"
 			      "# assumes that the first column of L contains only ones."
 			      "# @param  Matrix<int> L"
