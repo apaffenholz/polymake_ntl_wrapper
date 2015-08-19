@@ -1,7 +1,7 @@
 polymake_ntl_wrapper
 ====================
 
-polymake extension to wrap part of NTL for use with polymake data types. Note that using this extension requires a perpetual beta release of polymake from Mar 2014 or later. 
+polymake extension to wrap part of NTL for use with polymake data types. This extension works with the lates release 2.14 of polymake. 
 
-The extension requires NTL version 6 or above.
+The extension requires NTL version 9 or above.
 
